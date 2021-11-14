@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota:wght@300;400;700&family=Estonia&family=Handlee&display=swap');
+$orange : rgb(255, 94, 0);
+$size : 40px;
+
+@mixin ring($size, $color){
+    width:$size;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    box-shadow: inset $size/10 $size/10 $size/20 darken($color, 10%), $size/10 $size/10 $size/10 darken($color, 10%);
+    border: solid $color $size/10;
+    background: none;
+}
+
+@mixin display($direction,$justify,$align,$gap) {
+    display:flex;
+    justify-content: $justify;
+    flex-direction: $direction;
+    align-items:$align;
+    gap: $gap;
+    margin-block: 20px;
+    font-size: 40px;
+    font-family: Estonia;
+}
+
+.ring {
+    @include ring($size, $orange);
+}
+
+.title{
+    @include display(row, center, center, 20px);
+}
+
+.big-ring {
+    @include ring(100px, rgb(224, 189, 32));
+}
+
+.rings {
+    @include display(row,center,center,0)
+}
+
+.find {
+    @include display(column, center, center, 0)
+}
+
+@for $i from 1 through 6 {
+
+    $size:20px;
+    .ring-#{$i}{
+        position: relative;
+        left:-15px * $i;
+        z-index: 1 * $i;
+        @include ring(15px*$i, rgb(53, 53, 53));
+    }
+}
